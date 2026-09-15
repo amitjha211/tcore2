@@ -11,7 +11,7 @@ namespace apk.admin
     {
         private static string get_apk_folder()
         {
-            return Environment.GetEnvironmentVariable("apk_path");
+            return Environment.GetEnvironmentVariable("aj_apk_path");
         }
 
         public static void con_init(clsConnectionModel con)
