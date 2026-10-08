@@ -19,7 +19,7 @@ namespace TJ
         public clsCommand cmdHeader { get; set; } = new();
     }
 
-    public class clsHttpRequest
+    public static class clsHttpRequest
     {
 
         public static string getFormDataInString(List<clsParam> cmd)
@@ -42,7 +42,7 @@ namespace TJ
             }
         }
 
-        public async Task<T> sendRequest<T>(clsHttpRequestModel requestModel)
+        public static async Task<T> sendRequest<T>(clsHttpRequestModel requestModel)
         {
             object obj1 = null;
             return (T)obj1;

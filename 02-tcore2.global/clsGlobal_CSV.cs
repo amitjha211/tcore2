@@ -19,7 +19,7 @@ namespace tcore2.global
     {
         
         [DebuggerStepThrough]
-        public static DataTable readCSVFromURL(string sUrl)  => csv_read_url(sUrl);
+        public static DataTable readCSVFromURL(string sUrl)  => csv_read_url(sUrl); 
 
 
         [DebuggerStepThrough]

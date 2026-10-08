@@ -14,7 +14,6 @@ namespace tcore2
     {
 
         private DataRow _row;
-
         public override void setObject(object obj)
         {
             base.setObject(obj);
@@ -52,8 +51,6 @@ namespace tcore2
 
         
         public override void set(string sKey, object objValue) => _row[sKey] = objValue;
-
-        
         public override void set(int iCol, object objValue) => _row[iCol] = objValue;
     }
 

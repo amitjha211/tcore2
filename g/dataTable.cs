@@ -13,7 +13,7 @@ namespace g
     {
 
         ///ConvertDataTable
-        public static List<T> dt_getList<T>( DataTable dt)
+        public static List<T> dt_getList<T>(DataTable dt)
         {
             List<T> data = new List<T>();
             foreach (DataRow row in dt.Rows)

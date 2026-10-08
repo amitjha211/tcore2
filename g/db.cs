@@ -44,7 +44,17 @@ namespace g
                 throw _ex;
             }
         }
-
+        
+        [DebuggerStepThrough]
+        public static DataRow get_row(clsConnectionModel con, clsCommand cmd)
+        {
+            DataTable t = get_data(con, cmd);
+            if(t.Rows.Count>0)
+            {
+                return t.Rows[0];
+            }
+            return null;
+        }
 
 
         [DebuggerStepThrough]
@@ -101,7 +111,7 @@ namespace g
 
 
         [DebuggerStepThrough]
-        public static clsConnectionModel getCon(clsAPK _apk, string sCon = "con_main")
+        public static clsConnectionModel get_con(clsAPK _apk, string sCon = "con_main")
         {
             clsConnectionModel objCon = clsAPKF.getEnvObject(_apk, sCon) as clsConnectionModel;
             if (objCon == null) throw new exception_g($"Connection not {sCon} found ");

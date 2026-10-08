@@ -27,9 +27,6 @@ public class clsAPKF
         }
     }
 
-
-
-
     public static DataTable getData(clsAPK_Module _m
         , clsSQLModel objSQL
         , string sCon = "con_main")
@@ -160,7 +157,7 @@ public class clsAPKF
 
     }
 
-    
+
 
     public static clsAPK_Module createModule(clsAPK mAPK, XmlNode xNode)
     {
@@ -175,14 +172,19 @@ public class clsAPKF
     }
 
 
-    public static void init_module(clsAPK_Module _m)
+    public static void copyEnv(clsAPK _apk, clsAPK_Module _m)
     {
-        //
-        foreach (clsParam p in _m._apk.env.prm)
+        foreach (clsParam p in _apk.env.prm)
         {
             _m.env.set(p.name, p.value);
         }
+    }
 
+    public static void init_module(clsAPK_Module _m)
+    {
+
+        copyEnv(_m._apk, _m);
+        //
         _m.t = clsAPKF.getJArray(_m._apk, "@/common/m.json").ToObject<DataTable>();
         _m.t.Rows.Clear();
         _m.t.Columns.Add("obj", typeof(object));
@@ -274,6 +276,8 @@ public class clsAPKF
         if (objCon == null) throw new Exception_Core($"Connection not {sCon} found ");
         return objCon;
     }
+
+
 
 }
 

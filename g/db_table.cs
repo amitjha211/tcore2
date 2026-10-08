@@ -8,6 +8,7 @@ namespace g
 {
     public class db_table
     {
+
     }
 
 }

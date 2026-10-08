@@ -90,7 +90,7 @@ namespace apk.admin
             , string sDBType)
         {
 
-            
+
 
             clsConnectionModel objCon = new clsConnectionModel();
             objCon.ConnectionString = sConnectionString;
@@ -105,7 +105,7 @@ namespace apk.admin
             {
                 throw new Exception_Core(ex.Message);
             }
-            
+
             return null;
 
         }
@@ -125,24 +125,31 @@ namespace apk.admin
         }
 
 
-        public static clsAPK apk_create(string sAppName
-            , string sDBName
-            , string sEnv)
+        public static clsAPK apk_create(string sAppName, string sEnv)
         {
 
             clsAPK _apk = new clsAPK();
             _apk.appFolder = get_apk_folder();
             _apk.appName = sAppName;
             clsAPKF.setEnv(_apk, "env", sEnv);
-
             setDBConfig(_apk);
+
+            return _apk;
+        }
+
+
+        public static clsAPK apk_create(string sAppName
+        , string sDBName
+        , string sEnv)
+        {
+
+            clsAPK _apk = apk_create(sAppName, sDBName);
 
             clsAPKF.setEnv(_apk, "db_name", sDBName);
 
             apk_init_db(_apk, "master", "con_master");
             apk_init_db(_apk, $"schema_db", "con_schema");
             apk_init_db(_apk, sDBName, "con_main");
-
 
             return _apk;
 
@@ -156,7 +163,6 @@ namespace apk.admin
             clsConnectionModel objCon = apk_con_create(_apk, sDBName);
             clsAPKF.setEnvObject(_apk, sConName, objCon);
         }
-
 
         private static void setDBConfig(clsAPK _apk)
         {
@@ -188,6 +194,7 @@ namespace apk.admin
                 clsAPKF.setEnv(_apk, sKey, sValue);
             }
         }
+
 
     }
 

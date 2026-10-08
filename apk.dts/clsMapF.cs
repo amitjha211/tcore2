@@ -1,4 +1,5 @@
 ﻿using apk.dts;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,6 +25,7 @@ namespace apk.dts
             map.defaultValue = sDefaultValue;
             objMap.Add(map);
         }
+
 
         public static void setColIndexes(List<clsColMap> objMap, DataRow rSource
             , DataRow rDest)
@@ -51,6 +53,7 @@ namespace apk.dts
             }
         }
 
+
         public static void fillRowByIndex(List<clsColMap> objMap, DataRow rSource, DataRow rDest)
         {
 
@@ -70,20 +73,53 @@ namespace apk.dts
             }
         }
 
+
+        public static void fillRow(List<clsColMap> objMap
+            , JObject jnSource
+            , DataRow rDest)
+        {
+
+            foreach (clsColMap map in objMap)
+            {
+                rDest[map.Dest] = jnSource[map.Source];
+
+            }
+        }
+
         public static void moveData(List<clsColMap> map
-            ,DataTable tSource
-            ,DataTable tDest)
+            , DataTable tSource
+            , DataTable tDest)
         {
 
             clsMapF.setColIndexes(map, tSource, tDest);
 
-            foreach(DataRow rSource in tSource.Rows)
+            foreach (DataRow rSource in tSource.Rows)
             {
                 DataRow rDest = tDest.NewRow();
-                fillRowByIndex(map,rSource,rDest);
+                fillRowByIndex(map, rSource, rDest);
                 tDest.Rows.Add(rDest);
             }
         }
+
+
+
+
+        public static void moveData(List<clsColMap> map
+         , JArray arr
+         , DataTable tDest)
+        {
+            foreach (JObject jnRowSource in arr)
+            {
+                DataRow rDest = tDest.NewRow();
+
+                fillRow(map, jnRowSource, rDest);
+                tDest.Rows.Add(rDest);
+            }
+        }
+
+
+
+
 
     }
 }

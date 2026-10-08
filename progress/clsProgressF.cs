@@ -10,9 +10,9 @@ namespace tcore2.progress
     {
 
         public static clsProgressModel createAndInit(string sLabel
-            ,string sName
-            ,int iCount
-            ,Action<clsProgressModel> pEvent)
+            , string sName
+            , int iCount
+            , Action<clsProgressModel> pEvent)
         {
 
             clsProgressModel p = new clsProgressModel();
@@ -34,7 +34,7 @@ namespace tcore2.progress
         }
 
         public static void progress(clsProgressModel p
-            ,int _currentRow
+            , int _currentRow
             , Action<clsProgressModel> displayInfo)
         {
             p.action = "progress";
@@ -65,7 +65,7 @@ namespace tcore2.progress
 
         public static decimal getPercentage(clsProgressModel p)
         {
-            decimal iPer = (Convert.ToDecimal( p.iCurrentRow) / Convert.ToDecimal(p.iCount)) * 100;
+            decimal iPer = (Convert.ToDecimal(p.iCurrentRow) / Convert.ToDecimal(p.iCount)) * 100;
             return Math.Round(iPer);
         }
         public static string getInfo(clsProgressModel p)

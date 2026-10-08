@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using tcore2.global;
-
 namespace apk;
-
 
 public class clsAPK
 {
@@ -18,7 +16,7 @@ public class clsAPK
     public string appName = "";
 
     public Action<clsTableEvent> onTableDML = null;
-    internal clsCommand env = new clsCommand();
+    public clsCommand env = new clsCommand();
 }
 
 public class clsAPK_Module

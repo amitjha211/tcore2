@@ -8,6 +8,7 @@ using System.Xml;
 using tcore2.global;
 using apk.sql;
 using apk.dts;
+using System.Reflection;
 
 namespace apk
 {
@@ -69,21 +70,42 @@ namespace apk
 
         }
 
-        public static object createAssemblyObject(string _asm)
-        {
-            string asmName = "";
-            string asmClassPath = "";
+        //public static object createAssemblyObject(string _asm)
+        //{
+        //    string asmName = "";
+        //    string asmClassPath = "";
 
-            string[] sSplitted = _asm.Split(';');
-            if (sSplitted.Length == 2)
-            {
-                asmName = sSplitted[0];
-                asmClassPath = sSplitted[1];
-            }
+        //    string[] sSplitted = _asm.Split(';');
+        //    if (sSplitted.Length == 2)
+        //    {
+        //        asmName = sSplitted[0];
+        //        asmClassPath = sSplitted[1];
+        //    }
 
-            return createAssemblyObject(asmName, asmClassPath);
+        //    return createAssemblyObject(asmName, asmClassPath);
+        //}
 
-        }
+        //public static MethodInfo createAssemblyMethod(string _asmString)
+        //{
+        //    string asmName = "";
+        //    string asmClassPath = "";
+        //    string methodName = "";
+
+        //    string[] sSplitted = _asmString.Split(';');
+        //    if (sSplitted.Length == 3)
+        //    {
+        //        asmName = sSplitted[0];
+        //        asmClassPath = sSplitted[1];
+        //        methodName = sSplitted[2];
+        //    }
+
+        //    Assembly _asm = System.AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(p => p.FullName.StartsWith(asmName));
+        //    Type  _t =  _asm.GetType(asmClassPath);
+        //    MethodInfo _m = _t.GetMethod(methodName);
+
+        //    return _m;
+        //}
+
         public static List<clsColMap> createColMap(string sXml)
         {
             XmlDocument xDoc = new XmlDocument();
@@ -109,11 +131,11 @@ namespace apk
             return _lst;
         }
 
-        public static object createAssemblyObject(string asmName, string asmClassPath)
-        {
-            object _obj = Activator.CreateInstance(asmName, asmClassPath).Unwrap() as object;
-            return _obj;
-        }
+        //public static object createAssemblyObject(string asmName, string asmClassPath)
+        //{
+        //    object _obj = Activator.CreateInstance(asmName, asmClassPath).Unwrap() as object;
+        //    return _obj;
+        //}
 
     }
 }

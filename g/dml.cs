@@ -16,7 +16,6 @@ namespace g
 {
     public class dml
     {
-
         public static clsTableModel dml_create_table(clsConnectionModel objCon
             , string sTable
             , string sID = "id")
@@ -91,7 +90,4 @@ namespace g
             }
         }
     }
-
-
-
 }

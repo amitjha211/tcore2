@@ -14,6 +14,7 @@ using tcore2.global;
 using Microsoft.Win32.SafeHandles;
 using apk.exception;
 using apk.dts;
+using g;
 
 namespace apk
 {
@@ -66,6 +67,8 @@ namespace apk
             return clsAPK_ObjectF.createColMap(sXml);
         }
 
+
+        [DebuggerStepThrough]
         public static JArray f_getJArray(clsAPK_Module _m, string sPath)
         {
             string sJSON = null;
@@ -76,9 +79,9 @@ namespace apk
                 JArray _arr = JArray.Parse(sJSON);
                 return _arr;
             }
-            catch (Exception ex)
+            catch (exception_g ex)
             {
-                throw new Exception(ex.Message);
+                throw new exception_g(ex.Message);
             }
 
             return null;

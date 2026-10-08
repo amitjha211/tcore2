@@ -167,7 +167,7 @@ namespace apk.sql
             clsCommand cmd = new clsCommand();
             cmd.sql = getSQL(objSQL);
             foreach (clsParam prm in objSQL.cmd.prm) cmd.set(prm.name, prm.value);
-
+            
             return cmd;
         }
     }

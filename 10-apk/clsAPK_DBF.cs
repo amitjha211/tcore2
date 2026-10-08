@@ -42,23 +42,10 @@ namespace apk
             return null;
         }
 
-
-        //private static Exception getSQLException(string sMessage, string sSQL)
-        //{
-        //    StringBuilder sbError = new StringBuilder();
-        //    sbError.AppendLine("SQL Error : ");
-        //    sbError.AppendLine(sMessage);
-        //    sbError.AppendLine($"SQL : {sSQL}");
-        //    var ex = new Exception(sbError.ToString());
-
-        //    return ex;
-        //}
-
-        
-
         [DebuggerStepThrough]
         public static DataTable db_get_data(clsAPK_Module _m, string sqlName, params object[] args)
         {
+        
             string sSQL = null;
 
             try

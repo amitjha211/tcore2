@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using g;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace tcore2.global
 {
@@ -106,16 +107,22 @@ namespace tcore2.global
         }
 
 
-        [DebuggerStepThrough]
+        //[DebuggerStepThrough]
         public static void copyFrom(this DataRow r, JObject jnRow)
         {
 
-            JArray jnArray = new JArray();
-            jnArray.Add(jnRow);
 
-            DataTable tSource = jnArray.ToObject<DataTable>();
+            DataTable tSource = r.Table;
+            foreach (DataColumn col in tSource.Columns)
+            {
+                string sColumnName = col.ColumnName;
 
-            copyFrom(r, tSource.Rows[0]);
+                if (tSource.Columns.Contains(sColumnName) && jnRow.ContainsKey(sColumnName))
+                {
+                    r[sColumnName] = jnRow[sColumnName];
+                }
+            }
+
         }
 
         [DebuggerStepThrough]

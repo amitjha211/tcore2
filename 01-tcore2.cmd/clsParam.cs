@@ -10,7 +10,4 @@ namespace tcore2
         public string name { get; set; }
         public object value { get; set; }
     }
-
-
-
 }
