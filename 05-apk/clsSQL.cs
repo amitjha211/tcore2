@@ -23,6 +23,60 @@ namespace apk.sql
         internal clsCommand cmd = new clsCommand();
     }
 
+
+    public class clsSQLF2
+    {
+
+        public static clsSQLModel q_create_model(string sql)
+        {
+            clsSQLModel _model = new clsSQLModel();
+            clsSQLF.init(_model, sql);
+            return _model;
+        }
+
+        public static void q_add_filter(clsSQLModel objSQL
+            , string sName
+            , object value
+            , string sOperator = "=")
+        {
+            clsParam prm = new clsParam();
+
+            prm.name = sName.Replace('.', '_');
+            prm.value = value;
+            objSQL._where.AppendFormat(" and ( {0} {1} @{2} ) ", sName, sOperator, prm.name);
+
+            objSQL.cmd.set(prm.name, value);
+        }
+
+        public static clsCommand q_get_cmd_select(clsSQLModel objSQL)
+        {
+            clsCommand cmd = new clsCommand();
+            cmd.sql = clsSQLF.getSQL(objSQL);
+            foreach (clsParam prm in objSQL.cmd.prm) cmd.set(prm.name, prm.value);
+
+            return cmd;
+        }
+
+        public static void q_add_in(clsSQLModel objSQL, string sName, params string[] values)
+        {
+
+            List<string> lstValues = new List<string>();
+
+            foreach (string sValue in values)
+            {
+                lstValues.Add(string.Format("'{0}'", sValue));
+            }
+
+            objSQL._where.AppendFormat(" and ( {0} IN ({1}) )", sName, string.Join(",", lstValues.ToArray()));
+        }
+
+        public static void q_add_raw(clsSQLModel objSQL, string sFilter)
+        {
+            objSQL._where.AppendFormat(" and ({0}) ", sFilter);
+        }
+
+
+    }
     public class clsSQLF
     {
 
@@ -87,6 +141,7 @@ namespace apk.sql
 
             objSQL.cmd.set(prm.name, value);
         }
+
 
         public static void addRawFilter(clsSQLModel objSQL, string sFilter)
         {
